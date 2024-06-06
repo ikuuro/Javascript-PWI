@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        .calculadora {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: solid;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculadora">
+        <h1>Minha Calculadora</h1>
+        <p>Primeiro Número</p>
+        <input type="number" id="num1"> 
+        <p>Segundo Número</p>
+        <input type="number" id="num2"><br>
+        <div id="operacao">
+            <button onclick="calculate('Soma')">Soma</button>
+            <button onclick="calculate('Subtrair')">Subtrair</button>
+            <button onclick="calculate('Multiplicar')">Multiplicar</button>
+            <button onclick="calculate('Dividir')">Dividir</button>
+        </div>
+        <h3 id="resultado">O Resultado é: </h3>
+    </div>
+    <script>
+        function calculate(operacao) {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            let resultado;
+            
+            if (isNaN(num1) || isNaN(num2)) {
+                resultado = 'Por favor, insira números válidos';
+            } else {
+                switch (operacao) {
+                    case 'Soma':
+                        resultado = num1 + num2;
+                        break;
+                    case 'Subtrair':
+                        resultado = num1 - num2;
+                        break;
+                    case 'Multiplicar':
+                        resultado = num1 * num2;
+                        break;
+                    case 'Dividir':
+                        if (num2 !== 0) {
+                            resultado = num1 / num2;
+                        } else {
+                            resultado = 'Não é possível dividir por 0';
+                        }
+                        break;
+                    default:
+                        resultado = 'Operação inválida';
+                }
+            }
+
+            document.getElementById('resultado').textContent = 'O Resultado é: ' + resultado;
+        }
+    </script>
+</body>
+</html>
+
